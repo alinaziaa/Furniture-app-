@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Living — Modern Furniture & Home Decor</title>
+    <style>
+        :root {
+            --primary-brown: #8C6239;
+            --accent-gold: #C29B38;
+            --dark-ink: #2C221E;
+            --bg-cream: #F9F6F0;
+            --white: #FFFFFF;
+            --border-color: #E2D9D2;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--dark-ink);
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+        header {
+            background-color: var(--dark-ink);
+            color: var(--white);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            color: var(--accent-gold);
+        }
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+        .cart-badge {
+            background-color: var(--accent-gold);
+            color: var(--dark-ink);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 4px;
+        }
+        .hero {
+            background: linear-gradient(rgba(44,34,30,0.7), rgba(44,34,30,0.7)), url('https://picsum.photos/id/1040/1200/400');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            text-align: center;
+            padding: 90px 20px;
+        }
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 16px;
+            color: #eee;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            font-size: 22px;
+            color: var(--primary-brown);
+            border-bottom: 2px solid var(--primary-brown);
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: transform 0.2s;
+            position: relative;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: var(--accent-gold);
+            color: var(--dark-ink);
+            font-size: 11px;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 18px;
+        }
+        .card-content h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: var(--dark-ink);
+        }
+        .price {
+            color: var(--primary-brown);
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+        .btn {
+            flex: 1;
+            padding: 9px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .btn-cart {
+            background-color: var(--primary-brown);
+            color: var(--white);
+        }
+        .btn-wishlist {
+            background-color: #F1ECE6;
+            color: var(--dark-ink);
+            border: 1px solid var(--border-color);
+        }
+        .user-panel {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+        }
+        .auth-box, .profile-box {
+            flex: 1;
+            min-width: 280px;
+        }
+        .auth-box h3, .profile-box h3 {
+            margin-top: 0;
+            color: var(--primary-brown);
+        }
+        .auth-box input {
+            width: 100%;
+            padding: 11px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-sizing: border-box;
+            background-color: var(--bg-cream);
+        }
+        .auth-box button {
+            background-color: var(--dark-ink);
+            color: var(--white);
+            border: none;
+            padding: 11px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+        .guest-link {
+            display: block;
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--primary-brown);
+            text-decoration: underline;
+            cursor: pointer;
+            text-align: center;
+        }
+        .profile-box p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">AURA LIVING</div>
+        <div class="nav-links">
+            <a href="#tv-lounge">TV Lounge</a>
+            <a href="#bedroom">Bedroom</a>
+            <a href="#kitchen">Kitchen</a>
+            <a href="#washroom">Washroom</a>
+            <a href="#account">Sign In / Profile</a>
+            <a href="#cart">🛒 Cart <span class="cart-badge">3</span></a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <div class="hero">
+        <h1>Redefine Your Home Space</h1>
+        <p>Explore elegant, hand-crafted furniture collections tailored for every corner of your home.</p>
+    </div>
+
+    <div class="container">
+
+        <!-- 1. TV LOUNGE -->
+        <div id="tv-lounge" class="section-title">TV Lounge & Living Room Collection</div>
+        <div class="grid">
+            <div class="card">
+                <span class="tag">Best Seller</span>
+                <img src="https://picsum.photos/id/225/300/200" alt="Sofa">
+                <div class="card-content">
+                    <h3>Velvet Luxury 3-Seater Sofa</h3>
+                    <div class="price">$450.00</div>
+                    <div class="btn-group">
+                        <button class="btn btn-cart">Add to Cart</button>
+                        <button class="btn btn-wishlist">❤️ Wishlist</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/366/300/200" alt="Console">
+                <div class="card-content">
+                    <h3>Minimalist Wooden TV Media Console</h3>
+                    <div class="price">$220.00</div>
+                    <div class="btn-group">
+                        <button class="btn btn-cart">Add to Cart</button>
+                        <button class="btn btn-wishlist">❤️ Wishlist</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <span class="tag">New</span>
+                <img src="https://picsum.photos/id/431/300/200" alt="Lounge Chair">
+                <div class="card-content">
+                    <h3>Modern Accent Armchair & Ottoman</h3>
+                    <div class="price">$195.00</div>
+                    <div class="btn-group">
+                        <button class="btn btn-cart">Add to Cart</button>
+                        <button class="btn btn-wishlist">❤️ Wishlist</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/532/300/200" alt="Coffee Table">
+                <div class="card-content">
+                    <h3>Circular Glass Top Coffee Table</h3>
+                    <div class="price">$140.00</div>
+                    <div class="btn-group">
+                        <button class="btn btn-cart">Add to Cart</button>
+                        <button class="btn btn-wishlist">❤️ Wishlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. BEDROOM -->
+        <div id="bedroom" class="section-title">Bedroom & Rest Area (2 Rooms Setup)</div>
+        <div class="grid">
+            <div class="card">
+                <span class="tag">Top Rated</span>
+                <img src="https://picsum.photos/id/445/300/200" alt="Bed">
+                <div class="card-content">
+                    <h3>Master King Size Storage Bed</h3>
+                    <div class="price">$680.00</div>
+                    <div class="btn-group">
+                        <button class="btn btn-cart">Add to Cart</button>
+                        <button class="btn btn-wishlist">❤️ Wishlist</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/355/300/200" alt="Nightstand">
+                <div class="card-content">
+                    <h3>Oakwood Bedside Nightstand</h3>
+                    <div class="price">$90.00</div>
+                    <div class="btn-group">
+                        <button class="btn btn-cart">Add to Cart</button>
+                        <button class="btn btn-wishlist">❤️ Wishlist</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/163/300/200" alt="Wardrobe">
+                <div class="card-content">
+                    <h3>4-Door Sliding Glass Wardrobe</h3>
+                    <div class="price">$750.00</div>
+                    <div class="btn-group">
+                        <button class="btn btn-cart">Add to Cart</button>
+                        <button class="btn btn-wishlist">❤️ Wishlist</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <span class="tag">Sale</span>
+                <img src="https://picsum.photos/id/367/300/200" alt="Dressing Table">
+                <div class="card-content">
+                    <h3>Classic Vanity Dressing Table with Mirror</h3>
+                    <div class="price">$290.00</div>
+                    <div class="btn-group">
+                        <button class="btn btn-cart">Add to Cart</button>
+                        <button class="btn btn-wishlist">❤️ Wishlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. KITCHEN -->
+        <div id="kitchen" class="section-title">Kitchen & Dining Space</div>
+        <div class="grid">
+            <div class="card">
+                <img src="https://picsum.photos/id/486/300/200" alt="Kitchen Island">
+                <div class="card-content">
+                    <h3>Modular Modern Kitchen Island</h3>
+                    <div class="price">$950.00</div>
+                    <div class="btn-group">
+                        <button class="btn btn-cart">Add to Cart</button>
+                        <button class="btn btn-wishlist">❤️ Wishlist</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/292/300/200" alt="Dining Set">
+                <div class="card-content">
+                    <h3>Ergonomic Dining Table Set (6 Chairs)</h3>
+                    <div class="price">$520.00</div>
+                    <div class="btn-group">
+                        <button class="btn btn-cart">Add to Cart</button>
+                        <button class="btn btn-wishlist">❤️ Wishlist</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <span class="tag">Popular</span>
+                <img src="https://picsum.photos/id/538/300/200" alt="Bar Stools">
+                <div class="card-content">
+                    <h3>High-Back Leather Bar Stools (Set of 2)</h3>
+                    <div class="price">$160.00</div>
+                    <div class="btn-group">
+                        <button class="btn btn-cart">Add to Cart</button>
+                        <button class="btn btn-wishlist">❤️ Wishlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. WASHROOM -->
+        <div id="washroom" class="section-title">Washroom & Vanity Fittings (2 Washrooms)</div>
+        <div class="grid">
+            <div class="card">
+                <img src="https://picsum.photos/id/319/300/200" alt="Vanity">
+                <div class="card-content">
+                    <h3>Wall-Hung Marble Washbasin Vanity</h3>
+                    <div class="price">$310.00</div>
+                    <div class="btn-group">
+                        <button class="btn btn-cart">Add to Cart</button>
+                        <button class="btn btn-wishlist">❤️ Wishlist</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/21/300/200" alt="Mirror Cabinet">
+                <div class="card-content">
+                    <h3>LED Smart Mirror & Storage Cabinet</h3>
+                    <div class="price">$180.00</div>
+                    <div class="btn-group">
+                        <button class="btn btn-cart">Add to Cart</button>
+                        <button class="btn btn-wishlist">❤️ Wishlist</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <span class="tag">New</span>
+                <img src="https://picsum.photos/id/1069/300/200" alt="Towel Rack">
+                <div class="card-content">
+                    <h3>Stainless Steel Heated Towel Rack</h3>
+                    <div class="price">$110.00</div>
+                    <div class="btn-group">
+                        <button class="btn btn-cart">Add to Cart</button>
+                        <button class="btn btn-wishlist">❤️ Wishlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. SIGN IN, GUEST & PROFILE SECTION -->
+        <div id="account" class="user-panel">
+            <div class="auth-box">
+                <h3>Sign In / Register</h3>
+                <form>
+                    <input type="email" placeholder="Enter your email address" required>
+                    <input type="password" placeholder="Enter password" required>
+                    <button type="submit">Login to Account</button>
+                </form>
+                <span class="guest-link">Continue browsing as Guest</span>
+            </div>
+
+            <div class="profile-box">
+                <h3>User Profile</h3>
+                <p><strong>Name:</strong> Alina Zia</p>
+                <p><strong>Roll No / ID:</strong> 242201087</p>
+                <p><strong>Email:</strong> alina.zia@example.com</p>
+                <p><strong>Saved Address:</strong> House #12, Street 4, Islamabad</p>
+                <p><strong>Active Orders:</strong> 2 Orders in progress</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
